@@ -1,0 +1,25 @@
+---
+
+- name: Install Webserver
+  package:
+    name: apache2
+    state: present
+  become: yes
+
+- name: Start Webserver
+  service:
+    name: apache2
+    state: started
+  become: yes
+
+- name: Get facts for all inventory hosts
+  setup:
+  delegate_to: "{{ item }}"
+  delegate_facts: true
+  loop: "{{ groups['rpi'] }}"
+
+- name: Deploy hardware report template as index.html
+  template:
+    src: report.j2
+    dest: /var/www/html/index.html
+  become: yes 
