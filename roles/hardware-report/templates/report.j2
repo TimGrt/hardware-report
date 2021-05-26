@@ -2,35 +2,36 @@
 <html>
 <head>
   <link rel="stylesheet" href="css/main.css">
+<style>
+th {
+  text-align: left;
+}
+</style>
 </head>
-<h1>Developer Report</h1>
+<h1>Ansible Inventory Report</h1>
 <body>
-<table>
-    <thead>
-        <tr>
-            <th>Hostname</th>
-            <th>Operating System</th>
-            <th>Kernel</th>
-            <th>Python Version</th>
-            <th>Defaul IPv4 address</th>
-            <th>Package Manager</th>
-            <th>System Date Time</td>
-        </tr>
-    </thead>
-    <tbody>
+<table style="width:100%">
+    <tr>
+        <th>Hostname</th>
+        <th>Operating System</th>
+        <th>Kernel</th>
+        <th>Python Version</th>
+        <th>Default IPv4 address</th>
+        <th>BIOS Version</th>
+        <th>System Date Time</td>
+    </tr>
+    <tr>
 {% for linux_node in groups['all'] %}
-        <tr>
-            <td>{{ hostvars[linux_node]['ansible_hostname'] }}</td>
-            <td>{{ hostvars[linux_node]['ansible_distribution'] }} {{hostvars[linux_node]['ansible_distribution_version']}}</td>
-            <td>{{ hostvars[linux_node]['ansible_kernel'] }}</td>
-            <td>{{ hostvars[linux_node]['ansible_python_version'] }}</td>
-            <td>{{ hostvars[linux_node]['ansible_default_ipv4']['address'] }}</td>
-            <td>{{ hostvars[linux_node]['ansible_pkg_mgr'] }}</td>
-            <td>{{ hostvars[linux_node]['ansible_date_time']['date'] }}</td>
-
-        </tr>
+    <tr>
+        <td>{{ hostvars[linux_node]['ansible_hostname'] }}</td>
+        <td>{{ hostvars[linux_node]['ansible_distribution'] }} {{hostvars[linux_node]['ansible_distribution_version']}}</td>
+        <td>{{ hostvars[linux_node]['ansible_kernel'] }}</td>
+        <td>{{ hostvars[linux_node]['ansible_python_version'] }}</td>
+        <td>{{ hostvars[linux_node]['ansible_default_ipv4']['address'] }}</td>
+        <td>{{ hostvars[linux_node]['ansible_bios_version'] }}</td>
+        <td>{{ hostvars[linux_node]['ansible_date_time']['iso8601'] }}</td>
+    </tr>
 {% endfor %}
-    </tbody>
 </table>
 
 </body>

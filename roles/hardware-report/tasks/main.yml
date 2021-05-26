@@ -4,6 +4,7 @@
   package:
     name: apache2
     state: present
+    update_cache: yes
   become: yes
 
 - name: Start Webserver
@@ -16,7 +17,7 @@
   setup:
   delegate_to: "{{ item }}"
   delegate_facts: true
-  loop: "{{ groups['rpi'] }}"
+  loop: "{{ groups['all'] }}"
 
 - name: Deploy hardware report template as index.html
   template:
