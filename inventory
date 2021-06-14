@@ -1,9 +1,8 @@
-[management]
-management-server ansible_host=localhost ansible_connection=local
+[nodes]
+node1 ansible_host=18.159.207.8
+node2 ansible_host=3.67.197.10
+node3 ansible_host=3.120.148.46
+ansible-1 ansible_host=3.127.210.103
 
-[rpi]
-rpi-cluster-node1.test.home ansible_host=192.168.178.151
-rpi-cluster-node2.test.home ansible_host=192.168.178.152
-#rpi-cluster-node3.test.home ansible_host=192.168.178.153
-[rpi:vars]
-ansible_user=ansible
+[web]
+node1 ansible_host=18.159.207.8

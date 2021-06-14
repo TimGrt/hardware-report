@@ -1,6 +1,6 @@
 ---
 
 - name: Deploy Hardware report webserver
-  hosts: management
+  hosts: web
   roles:
     - hardware-report

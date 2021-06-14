@@ -1,15 +1,25 @@
 ---
 
+- name: Set package and service name according to OS - RHEL
+  set_fact:
+    webserver_name: httpd
+  when: "ansible_os_family == 'RedHat'"
+
+- name: Set package and service name according to OS - Debian
+  set_fact:
+    webserver_name: apache2
+  when: "ansible_os_family == 'Debian'"
+
 - name: Install Webserver
   package:
-    name: apache2
+    name: "{{ webserver_name }}"
     state: present
     update_cache: yes
   become: yes
-
+  
 - name: Start Webserver
   service:
-    name: apache2
+    name: "{{ webserver_name }}"
     state: started
   become: yes
 
